@@ -1,21 +1,20 @@
 ﻿OimoPhysics.haxe
 ===========
-A 3D physics engine for Haxe/Openfl. 
+Haxe/Openfl向けの3D物理エンジン。
+[OimoPhysics][]のHaxe版です。
 
-This project based on [OimoPhysics][].
-
-using [as3hx][] for translation to Haxe.
+コード変換には [as3hx][] を利用しています。
 
 [as3hx]: https://github.com/HaxeFoundation/as3hx 
 [OimoPhysics]:https://github.com/saharan/OimoPhysics
 
 ## Install
 
-You can use haxelib install command. 
+haxelib install コマンドからインストール出来ます。
 
     haxelib install oimophysics
 
-and, write dependency to application.xml
+application.xml に OimoPhysics を追加します。
 
     <haxelib name="oimophysics" />
 
@@ -23,8 +22,6 @@ and, write dependency to application.xml
 ## TODO
 * Add Demos.
 * Optimization for Haxe.
-* English Document.
-
 
 ## License
 MIT.
