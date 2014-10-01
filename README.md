@@ -1,7 +1,19 @@
-OimoPhysics
+﻿OimoPhysics.haxe
 ===========
+A 3D physics engine for Haxe/Openfl. 
 
-A 3D physics engine.
+This project based on [OimoPhysics][].
 
-* For ActionScript 3.0
-* Alpha version
+using [as3hx][] for translation to Haxe.
+
+[as3hx]: https://github.com/HaxeFoundation/as3hx 
+[OimoPhysics]:https://github.com/saharan/OimoPhysics
+
+## TODO
+* Add Demos.
+* Optimization for Haxe.
+* English Document.
+
+
+## License
+MIT.
