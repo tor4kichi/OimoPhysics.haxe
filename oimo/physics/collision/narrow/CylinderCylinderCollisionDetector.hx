@@ -203,8 +203,12 @@ class CylinderCylinderCollisionDetector extends CollisionDetector
                 nz = t1x * t2y - t1y * t2x;
                 continue;
             }
+			var iterations:Int = 0;
             var hit : Bool = false;
-            while (true){  // refinement phase  
+            while (true) {  // refinement phase  
+				if (++iterations > 100) {
+					return false;
+				}
                 t1x = v2x - v1x;
                 t1y = v2y - v1y;
                 t1z = v2z - v1z;
