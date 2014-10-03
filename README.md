@@ -23,5 +23,3 @@ application.xml に OimoPhysics を追加します。
 * Add Demos.
 * Optimization for Haxe.
 
-## License
-MIT.
