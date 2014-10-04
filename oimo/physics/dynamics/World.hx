@@ -387,20 +387,17 @@ class World
             var tmpB : RigidBody = rigidBodies[i];
             if (tmpB.sleeping) {
                 var lv : Vec3 = tmpB.linearVelocity;
-                var av : Vec3 = tmpB.linearVelocity;
                 var p : Vec3 = tmpB.position;
                 var sp : Vec3 = tmpB.sleepPosition;
                 var o : Quat = tmpB.orientation;
                 var so : Quat = tmpB.sleepOrientation;
                 if (
                     lv.x != 0 || lv.y != 0 || lv.z != 0 ||
-                    av.x != 0 || av.y != 0 || av.z != 0 ||
                     p.x != sp.x || p.y != sp.y || p.z != sp.z ||
-                    o.s != so.s || o.x != so.x || o.y != so.y || o.z != so.z) {
-                    tmpB.awake();  // awaking check  
-                    {
-						continue;
-                    }
+                    o.s != so.s || o.x != so.x || o.y != so.y || o.z != so.z
+				) {
+					tmpB.awake();  // awaking check  
+					continue;
                 }
             }
         }
@@ -605,8 +602,7 @@ class World
                     tmpC = cc.parent;
                     if (tmpC.addedToIsland) {
                         cc = cc.next;
-                        {rigidBodyItr++;continue;
-                        }
+						continue;
                     }  // add constraint to the island  
                     
                     islandConstraints[islandNumConstraints++] = tmpC;
@@ -615,8 +611,7 @@ class World
                     var next : RigidBody = cc.connectedBody;
                     if (next.addedToIsland || next.type == RigidBody.BODY_STATIC) {
                         cc = cc.next;
-                        {rigidBodyItr++;continue;
-                        }
+						continue;
                     }  // add rigid body to stack  
                     
                     islandStack[numStacks++] = next;
@@ -628,8 +623,7 @@ class World
                     tmpC = jc.parent;
                     if (tmpC.addedToIsland) {
                         jc = jc.next;
-                        {rigidBodyItr++;continue;
-                        }
+						continue;
                     }  // add constraint to the island  
                     
                     islandConstraints[islandNumConstraints++] = tmpC;
@@ -638,8 +632,7 @@ class World
                     var next : RigidBody = jc.connected;
                     if (next.addedToIsland || next.type == RigidBody.BODY_STATIC) {
                         jc = jc.next;
-                        {rigidBodyItr++;continue;
-                        }
+						continue;
                     }  // add rigid body to stack  
                     
                     islandStack[numStacks++] = next;
@@ -678,9 +671,7 @@ class World
                 if (!tmpB.allowSleep) {
                     tmpB.sleepTime = 0;
                     sleepTime = 0;
-                    {
-						continue;
-                    }
+					continue;
                 }
                 var vx : Float = tmpB.linearVelocity.x;
                 var vy : Float = tmpB.linearVelocity.y;
@@ -688,9 +679,7 @@ class World
                 if (vx * vx + vy * vy + vz * vz > 0.01) {
                     tmpB.sleepTime = 0;
                     sleepTime = 0;
-                    {
-						continue;
-                    }
+					continue;
                 }
                 vx = tmpB.angularVelocity.x;
                 vy = tmpB.angularVelocity.y;
@@ -698,9 +687,7 @@ class World
                 if (vx * vx + vy * vy + vz * vz > 0.04) {
                     tmpB.sleepTime = 0;
                     sleepTime = 0;
-                    {
-						continue;
-                    }
+					continue;
                 }
                 tmpB.sleepTime += timeStep;
                 if (tmpB.sleepTime < sleepTime)                     sleepTime = tmpB.sleepTime;

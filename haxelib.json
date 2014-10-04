@@ -2,9 +2,9 @@
 	"name": "oimophysics",
 	"url": "https://github.com/tor4kichi/OimoPhysics.haxe",
 	"license": "MIT",
-	"tags": [ "oimo", "physics", "3d", "engine", "game" ],
-	"description": "OimoPhysics is 3D Physics engine. This project based on saharan/OimoPhysics AS3 3D Physics engine",
-	"version": "1.0.0",
-	"releasenote": "Initial alpha release",
+	"tags": [ "oimo", "physics", "3d", "engine", "openfl", "game" ],
+	"description": "OimoPhysics is 3D Physics engine , This project based on saharan/OimoPhysics AS3 3D Physics engine.",
+	"version": "1.0.2",
+	"releasenote": "fixed often stop RigidBody.",
 	"contributors": [ "tor4kichi" ]
 }
