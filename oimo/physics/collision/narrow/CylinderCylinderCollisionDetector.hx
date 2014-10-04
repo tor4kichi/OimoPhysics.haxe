@@ -203,12 +203,8 @@ class CylinderCylinderCollisionDetector extends CollisionDetector
                 nz = t1x * t2y - t1y * t2x;
                 continue;
             }
-			var iterations:Int = 0;
             var hit : Bool = false;
             while (true) {  // refinement phase  
-				if (++iterations > 100) {
-					return false;
-				}
                 t1x = v2x - v1x;
                 t1y = v2y - v1y;
                 t1z = v2z - v1z;
@@ -265,22 +261,17 @@ class CylinderCylinderCollisionDetector extends CollisionDetector
                     }
                     return false;
                 }
-				var __f__ = function(v1:Float, v2:Float, v3:Float, v4:Float, v5:Float):Int{
-					return (v1.toBinary() * v2.toBinary() - v3.toBinary() * v4.toBinary()) * v5.toBinary();	
-				};
-
-                if (
-					__f__(v4y, v1z, v4z, v1y, v0x) + 
-//                    (v4y != 0 * v1z != 0 - v4z != 0 * v1y != 0) * v0x != 0 +
-					__f__(v4z, v1x, v4x, v1z, v0y) + 
-//                    (v4z != 0 * v1x != 0 - v4x != 0 * v1z != 0) * v0y != 0 +
-                    (v4x * v1y - v4y * v1x) * v0z < 0) {
-                    if (
-						__f__(v4y, v2z, v4z, v2y, v0x) + 
-//                        (v4y != 0 * v2z != 0 - v4z != 0 * v2y != 0) * v0x != 0 +
-						__f__(v4z, v2x, v4x, v2z, v0y) + 
-//                       (v4z != 0 * v2x != 0 - v4x != 0 * v2z != 0) * v0y != 0 +
-                        (v4x * v2y - v4y * v2x) * v0z < 0) {  // remove v1  
+				
+				if (
+					(v4y * v1z - v4z * v1y) * v0x +
+					(v4z * v1x - v4x * v1z) * v0y +
+					(v4x * v1y - v4y * v1x) * v0z < 0
+				) {
+					if (
+						(v4y * v2z - v4z * v2y) * v0x +
+						(v4z * v2x - v4x * v2z) * v0y +
+						(v4x * v2y - v4y * v2x) * v0z < 0
+					){  // remove v1  
                         v1x = v4x;
                         v1y = v4y;
                         v1z = v4z;
@@ -304,12 +295,11 @@ class CylinderCylinderCollisionDetector extends CollisionDetector
                     }
                 }
                 else {
-                    if (
-						__f__(v4y, v3z, v4z, v3y, v0x) + 
-//                        (v4y != 0 * v3z != 0 - v4z != 0 * v3y != 0) * v0x != 0 +
-						__f__(v4z, v3x, v4x, v3z, v0y) + 
-//                        (v4z != 0 * v3x != 0 - v4x != 0 * v3z != 0) * v0y != 0 +
-                        (v4x * v3y - v4y * v3x) * v0z < 0) {  // remove v2  
+					if (
+						(v4y * v3z - v4z * v3y) * v0x +
+						(v4z * v3x - v4x * v3z) * v0y +
+						(v4x * v3y - v4y * v3x) * v0z < 0
+					) {  // remove v2  
                         v2x = v4x;
                         v2y = v4y;
                         v2z = v4z;
