@@ -370,12 +370,14 @@ class World
             var tmpB : RigidBody = rigidBodies[i];
             if (tmpB.sleeping) {
                 var lv : Vec3 = tmpB.linearVelocity;
+				var av :Vec3 = tmpB.angularVelocity;
                 var p : Vec3 = tmpB.position;
                 var sp : Vec3 = tmpB.sleepPosition;
                 var o : Quat = tmpB.orientation;
                 var so : Quat = tmpB.sleepOrientation;
                 if (
                     lv.x != 0 || lv.y != 0 || lv.z != 0 ||
+					av.x != 0 || av.y != 0 || av.z != 0 ||
                     p.x != sp.x || p.y != sp.y || p.z != sp.z ||
                     o.s != so.s || o.x != so.x || o.y != so.y || o.z != so.z
 				) {
@@ -555,15 +557,14 @@ class World
         
         numIslands = 0;
         // build and solve simulation islands
-		var rigidBodyItr:Int = 0;
-		while(rigidBodyItr < numRigidBodies) {
-            var base : RigidBody = rigidBodies[rigidBodyItr];
+		
+		for(i in 0...numRigidBodies) {
+            var base : RigidBody = rigidBodies[i];
             if (
 				base.addedToIsland || 
 				base.type == RigidBody.BODY_STATIC || 
 				base.sleeping
 				) {
-				rigidBodyItr++;
 				continue;
             }  // ignore  ;
             islandNumRigidBodies = 0;
@@ -586,8 +587,9 @@ class World
                     if (tmpC.addedToIsland) {
                         cc = cc.next;
 						continue;
-                    }  // add constraint to the island  
-                    
+                    }  
+					
+					// add constraint to the island  
                     islandConstraints[islandNumConstraints++] = tmpC;
                     tmpC.addedToIsland = true;
                     tmpC.sleeping = false;
@@ -698,7 +700,6 @@ class World
             }
             numIslands++;
         }
-		rigidBodyItr++;
     }
 }
 
